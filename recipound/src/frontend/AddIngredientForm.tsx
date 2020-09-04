@@ -1,58 +1,47 @@
 import React, { Component } from "react";
-import { Typography, Paper, Grid, TextField } from "@material-ui/core";
-import { AddIngredientButton } from "./AddIngredientButton";
+import { Formik, Form, Field } from "formik"; 
+import { TextField } from "formik-material-ui";
+import { Button } from '@material-ui/core'
 
 export class AddIngredientForm extends Component {
+
+    handleSubmit = (values: any, {
+        setSubmitting
+    }: any) => {
+        setSubmitting(false)
+        return
+    }
+
     render () {
         return (
-            <div>
-                <Paper elevation={3}>
-                    <Typography variant='h6'>Add an ingredient</Typography>
-                    <Grid container spacing={1}>
-                        <Grid item xs={12}>
-                            <TextField
-                                variant='outlined'
-                                fullWidth
-                                label='Raw ingredient' />
-                        </Grid>
-                        <Grid item xs={6}>
-                            <TextField
-                                variant='outlined'
-                                label='Quantity' />
-                        </Grid>
-                        <Grid item xs={6}>
-                            <TextField
-                                variant='outlined'
-                                label='Unit' />
-                        </Grid>
-                        <Grid item xs={6}>
-                            <TextField
-                                variant='outlined'
-                                label='Package Amount' />
-                        </Grid>
-                        <Grid item xs={6}>
-                            <TextField
-                                variant='outlined'
-                                label='Unit' />
-                        </Grid>
-                        <Grid item xs={12}>
-                            <TextField
-                                variant='outlined'
-                                fullWidth
-                                label='Package Cost' />
-                        </Grid>
-                        <Grid item xs={12}>
-                            <TextField
-                                variant='outlined'
-                                fullWidth
-                                label='Source' />
-                        </Grid>
-                        <Grid item xs={12}>
-                            <AddIngredientButton />
-                        </Grid>
-                    </Grid>
-                </Paper>
-            </div>
-        );
+            <Formik
+            initialValues = {{
+                rawIngredient: '',
+                quantity: '',
+                unit: '',
+                packageAmount: '',
+                packageUnit: '',
+                packageCost: '', 
+                source: '',
+            }}
+            onSubmit = {this.handleSubmit}
+            render = { formProps => { 
+                return(
+                    <Form>
+                        <Field type="text" name="rawIngredient" placeholder="Raw Ingredient" component={ TextField }/>
+                        <Field type="number" name="quantity" placeholder="Quantity" component={ TextField }/>
+                        <Field type="text" name="unit" placeholder="Unit" component={ TextField }/>
+                        <Field type="number" name="packageAmount" placeholder="Package Amount" component={ TextField }/>
+                        <Field type="text" name="packageUnit" placeholder="Package Unit" component={ TextField }/>
+                        <Field type="number" name="packageCost" placeholder="Package Cost" component={ TextField }/>
+                        <Field type="text" name="source" placeholder="Source" component={ TextField }/>
+                        <Button type="submit"
+                                disabled={formProps.isSubmitting}>
+                                Add to Recipe
+                        </Button>
+                    </Form>
+                ); 
+            }}
+        />);
     }
 }
