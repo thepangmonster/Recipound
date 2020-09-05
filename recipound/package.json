@@ -12,6 +12,7 @@
     "fetch": "^1.1.0",
     "formik": "^2.1.5",
     "formik-material-ui": "^3.0.0-alpha.0",
+    "lint": "^0.7.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0",
