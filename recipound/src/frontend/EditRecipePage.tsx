@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import { Grid } from "@material-ui/core"; 
+import { Grid, Typography } from "@material-ui/core"; 
 import { IngredientListTable } from "./IngredientListTable"
 import { EditRecipeAppBar } from "./EditRecipeAppBar";
 import { AddIngredientForm } from "./AddIngredientForm";
@@ -11,6 +11,7 @@ export class EditRecipePage extends Component {
                 <EditRecipeAppBar/>
                 <Grid container spacing={1}>
                     <Grid item xs={6}>
+                        <Typography variant="h4">Add an ingredient</Typography>
                         <AddIngredientForm/>
                     </Grid>
                     <Grid item xs={6}>
